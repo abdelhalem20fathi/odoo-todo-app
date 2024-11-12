@@ -1,0 +1,56 @@
+<odoo>
+    <data>
+        <!-- Tree View -->
+        <record id="view_todo_task_tree" model="ir.ui.view">
+            <field name="name">todo.task.tree</field>
+            <field name="model">todo.task</field>
+            <field name="arch" type="xml">
+                <tree string="To-Do Tasks">
+                    <field name="name"/>
+                    <field name="due_date"/>
+                    <field name="status"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form View -->
+        <record id="view_todo_task_form" model="ir.ui.view">
+            <field name="name">todo.task.form</field>
+            <field name="model">todo.task</field>
+            <field name="arch" type="xml">
+                <form string="To-Do Task">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="description"/>
+                            <field name="due_date"/>
+                            <field name="status"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_todo_task" model="ir.actions.act_window">
+            <field name="name">To-Do Tasks</field>
+            <field name="res_model">todo.task</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_todo_task_tree"/>
+        </record>
+
+        <!-- Menu Item -->
+        <menuitem
+                id="todo_app_menu"
+                name="To-Do App"
+                sequence="10"
+        action="action_todo_task"
+
+        />
+        <menuitem
+                id="todo_task_menu"
+                name="To-Do Tasks"
+                parent="todo_app_menu"
+                />
+    </data>
+</odoo>
